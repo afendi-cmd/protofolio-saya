@@ -16,8 +16,8 @@ interface AboutProps {
 
 export default function About({ dict }: AboutProps) {
   return (
-    <section id="about" className="scroll-mt-14 py-8 md:py-12 ">
-      <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 max-w-5xl mx-auto px-6">
+    <section id="about" className="scroll-mt-14 py-8 md:py-12 overflow-hidden">
+      <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16 max-w-5xl mx-auto px-4 sm:px-6">
         {/* KOLOM KIRI: Image Container (stacks vertically on mobile) */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
@@ -45,29 +45,27 @@ export default function About({ dict }: AboutProps) {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex-1 space-y-6"
+          className="flex-1 space-y-6 w-full"
         >
-          {/* Sapaan dengan Aksen Solid Color (Tetap menggunakan Flexbox responsif) */}
-          <h3 className="flex flex-col items-start gap-3 md:gap-4 text-3xl md:text-4xl font-black text-brand-text uppercase">
+          {/* Sapaan dengan Aksen Solid Color (Responsive untuk mobile) */}
+          <h3 className="flex flex-col items-start gap-3 md:gap-4 text-2xl sm:text-3xl md:text-4xl font-black text-brand-text uppercase">
             {/* Baris 1: Sapaan & Nama */}
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-3">
-              <span>{dict.greeting}</span>
-              <span className="bg-brand-blue text-white px-3 py-1 rounded-xl whitespace-nowrap -rotate-1 shadow-sm">
+            <div className="flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-2 sm:gap-x-3 sm:gap-y-3 w-full">
+              <span className="text-xl sm:text-2xl md:text-3xl">{dict.greeting}</span>
+              <span className="bg-brand-blue text-white px-3 py-1.5 rounded-xl text-base sm:text-xl md:text-2xl break-words max-w-full inline-block">
                 {dict.name}
               </span>
             </div>
 
             {/* Baris 2: Role */}
-            <span className="bg-brand-mint text-brand-text px-3 py-1 rounded-xl whitespace-nowrap rotate-1 shadow-sm">
+            <span className="bg-brand-mint text-brand-text px-3 py-1.5 rounded-xl text-base sm:text-xl md:text-2xl break-words max-w-full inline-block">
               {dict.role}
             </span>
           </h3>
 
-          {/* Bio Container (fix for missing left border on mobile) */}
-          {/* Kita gunakan class 'border-l-4' tanpa media query agar garis ungu selalu tampil */}
-          {/* Namun kita kurangi padding kiri (pl-4) dan margin vertikal (my-4) khusus mobile */}
+          {/* Bio Container - Responsive text */}
           <div className="border-l-4 border-brand-purple pl-4 md:pl-6 py-1.5 md:py-2 my-4 md:my-6">
-            <p className="text-lg whitespace-pre-line text-brand-text/70 font-medium leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg whitespace-pre-line text-brand-text/70 font-medium leading-relaxed">
               {dict.bio}
             </p>
           </div>
@@ -77,10 +75,9 @@ export default function About({ dict }: AboutProps) {
             <a
               href=""
               download=""
-              // fix for button clipping: make horizontal padding responsive (px-6 -> px-8)
-              className="inline-flex items-center gap-2 px-6 md:px-8 py-3 md:py-3.5 bg-brand-text text-white font-black rounded-full shadow-md hover:bg-brand-purple hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-5 sm:px-6 md:px-8 py-2.5 sm:py-3 md:py-3.5 bg-brand-text text-white text-sm sm:text-base font-black rounded-full shadow-md hover:bg-brand-purple hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
             >
-              <Download className="w-5 h-5" /> {dict.downloadCv}
+              <Download className="w-4 h-4 sm:w-5 sm:h-5" /> {dict.downloadCv}
             </a>
           </div>
         </motion.div>
