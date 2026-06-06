@@ -31,8 +31,8 @@ export default function Contact({ dict }: ContactProps) {
     const formData = new FormData(form);
 
     try {
-      // Ganti URL_FORMSPREE_ANDA dengan link asli dari Formspree
-      const response = await fetch("https://formspree.io/f/xojbeear", {
+      // Form endpoint Formspree yang sudah dikonfigurasi
+      const response = await fetch("https://formspree.io/f/xnjyjgyw", {
         method: "POST",
         body: formData,
         headers: {
