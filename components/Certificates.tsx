@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FileText, Download } from "lucide-react";
 
 interface CertificatesProps {
   dict: {
@@ -9,10 +10,44 @@ interface CertificatesProps {
   };
 }
 
+// Data sertifikat dengan link PDF
+const certificates = [
+  { 
+    id: 1, 
+    title: "Network Security Essentials", 
+    issuer: "Cisco",
+    file: "/images/certificate/584541_499270_691_print.pdf"
+  },
+  { 
+    id: 2, 
+    title: "CCNA: Introduction to Networks", 
+    issuer: "Cisco",
+    file: "/images/certificate/CCNA-_Introduction_to_Networks_certificate_mronal-afendi04-gmail-com_6f32a772-1d43-4e65-8c44-dba78baf01c7.pdf"
+  },
+  { 
+    id: 3, 
+    title: "CCNA: Switching, Routing & Wireless Essentials", 
+    issuer: "Cisco",
+    file: "/images/certificate/CCNA-_Switching-_Routing-_and_Wireless_Essentials_certificate_mronal-afendi04-gmail-com_8c645379-d351-45d6-9668-13df239bb806.pdf"
+  },
+  { 
+    id: 4, 
+    title: "Professional Certificate", 
+    issuer: "CLMS",
+    file: "/images/certificate/clmsCertificate.pdf"
+  },
+  { 
+    id: 5, 
+    title: "Additional Certification", 
+    issuer: "Professional",
+    file: "/images/certificate/doc.pdf"
+  },
+];
+
 export default function Certificates({ dict }: CertificatesProps) {
   return (
     <section id="certificates" className="scroll-mt-14 py-8 md:py-12 relative">
-      <div className="max-w-6xl mx-auto px-6 relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         
         {/* Badge Judul */}
         <div className="text-center mb-12 md:mb-16">
@@ -21,79 +56,53 @@ export default function Certificates({ dict }: CertificatesProps) {
           </h3>
         </div>
 
-        {/* Coming Soon Container */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          className="flex items-center justify-center min-h-[400px]"
-        >
-          <div className="relative">
-            
-            {/* Glowing Background Effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-brand-mint/20 via-brand-mint/30 to-brand-mint/20 blur-3xl rounded-full animate-pulse" />
-            
-            {/* Main Content */}
-            <div className="relative bg-brand-text/5 backdrop-blur-sm border-2 border-brand-mint/30 rounded-3xl px-12 py-16 md:px-20 md:py-20 text-center">
-              
-              {/* Icon */}
-              <motion.div
-                animate={{ 
-                  rotate: [0, 10, -10, 0],
-                }}
-                transition={{ 
-                  duration: 2,
-                  repeat: Infinity,
-                  repeatDelay: 1
-                }}
-                className="mb-6"
-              >
-                <svg 
-                  className="w-20 h-20 md:w-24 md:h-24 mx-auto text-brand-mint" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={1.5} 
-                    d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" 
-                  />
-                </svg>
-              </motion.div>
+        {/* Grid Sertifikat */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {certificates.map((cert, index) => (
+            <motion.div
+              key={cert.id}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+            >
+              {/* Card Sertifikat */}
+              <div className="relative group bg-white border border-brand-text/10 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-2">
+                
+                {/* Icon Area */}
+                <div className="bg-gradient-to-br from-brand-mint/20 to-brand-blue/20 p-8 flex items-center justify-center">
+                  <div className="w-20 h-20 bg-white/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <FileText className="w-10 h-10 text-brand-text" />
+                  </div>
+                </div>
 
-              {/* Text */}
-              <h4 className="text-3xl md:text-4xl font-bold text-brand-text mb-3">
-                Coming Soon
-              </h4>
-              <p className="text-brand-text/60 text-lg md:text-xl max-w-md mx-auto">
-                Sertifikat sedang dalam proses dan akan segera ditampilkan
-              </p>
+                {/* Content */}
+                <div className="p-6">
+                  <h4 className="text-lg font-black text-brand-text mb-2 line-clamp-2 min-h-[56px]">
+                    {cert.title}
+                  </h4>
+                  <p className="text-sm text-brand-text/60 font-semibold mb-4">
+                    {cert.issuer}
+                  </p>
 
-              {/* Animated Dots */}
-              <div className="flex gap-2 justify-center mt-8">
-                {[0, 1, 2].map((i) => (
-                  <motion.div
-                    key={i}
-                    animate={{ 
-                      scale: [1, 1.5, 1],
-                      opacity: [0.3, 1, 0.3]
-                    }}
-                    transition={{ 
-                      duration: 1.5,
-                      repeat: Infinity,
-                      delay: i * 0.2
-                    }}
-                    className="w-2 h-2 bg-brand-mint rounded-full"
-                  />
-                ))}
+                  {/* Button Download */}
+                  <a
+                    href={cert.file}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-4 py-2.5 bg-brand-text text-white text-sm font-bold rounded-xl hover:bg-brand-purple transition-colors duration-300 w-full justify-center"
+                  >
+                    <Download className="w-4 h-4" />
+                    View Certificate
+                  </a>
+                </div>
+
+                {/* Hover Border Effect */}
+                <div className="absolute inset-0 border-2 border-brand-mint/0 group-hover:border-brand-mint/30 rounded-2xl transition-colors duration-300 pointer-events-none" />
               </div>
-
-            </div>
-          </div>
-        </motion.div>
+            </motion.div>
+          ))}
+        </div>
 
       </div>
     </section>
