@@ -43,6 +43,6 @@ export function proxy(request: NextRequest) {
 export const config = {
   // Amankan folder statis dari incaran middleware
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|projects|images|content|CV-DeftValianExanova.pdf|googlea710c91953a8d3e8\\.html).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|projects|images|content|googlea710c91953a8d3e8\\.html).*)",
   ],
 };
