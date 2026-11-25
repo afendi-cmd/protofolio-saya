@@ -27,14 +27,15 @@ export function proxy(request: NextRequest) {
 
   // Cek apakah URL sudah memiliki locale (/id atau /en)
   const pathnameIsMissingLocale = locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+    (locale) =>
+      !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`,
   );
 
   // Jika belum ada locale di URL, lakukan redirect otomatis
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
     return NextResponse.redirect(
-      new URL(`/${locale}${pathname === "/" ? "" : pathname}`, request.url)
+      new URL(`/${locale}${pathname === "/" ? "" : pathname}`, request.url),
     );
   }
 }
@@ -42,6 +43,6 @@ export function proxy(request: NextRequest) {
 export const config = {
   // Amankan folder statis dari incaran middleware
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|projects|images|content|CV-DeftValianExanova.pdf).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|projects|images|content|CV-DeftValianExanova.pdf|googlea710c91953a8d3e8\\.html).*)",
   ],
 };
